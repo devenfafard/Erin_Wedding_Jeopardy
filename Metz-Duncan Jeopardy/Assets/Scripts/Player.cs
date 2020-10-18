@@ -1,25 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player 
 {
-    [SerializeField] private string name = null;
-    [SerializeField] private string score = null;
-    // Start is called before the first frame update
-    void Start()
+    private string name = null;
+    private int score   = 0;
+
+    public Player(string _name)
     {
-        
+        name = _name;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateScore(int amount)
     {
-        
-    }
-
-    void Turn()
-    {
-
+        score += amount;
     }
 }
