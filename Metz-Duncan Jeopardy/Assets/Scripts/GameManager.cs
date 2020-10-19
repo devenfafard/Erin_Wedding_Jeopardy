@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameManager : MonoBehaviour
 {
@@ -34,7 +35,6 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    //List<Player> players = new List<Player>();
     [SerializeField] string[] categoryNames = new string[5];
     [SerializeField] string[] category1Questions = new string[5];
     [SerializeField] string[] category2Questions = new string[5];
@@ -43,6 +43,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] string[] category5Questions = new string[5];
     [SerializeField] private Transform[] _categoryHeaders = new Transform[5];
     [SerializeField] private Transform[] _categories;
+    [SerializeField] private TextMeshProUGUI _pumpkinScore = null;
+    [SerializeField] private TextMeshProUGUI _witchScore = null;
+    [SerializeField] private TextMeshProUGUI _ghostScore = null;
     [SerializeField] private Transform _template;
     [SerializeField] private Canvas _questionPanel = null;
     [SerializeField] private Canvas _gameBoardPanel = null;
@@ -52,6 +55,12 @@ public class GameManager : MonoBehaviour
     private CanvasGroup _questionCanvasGroup = null;
     private CanvasGroup _gameBoardCanvasGroup = null;
     private CanvasGroup _introPanelGroup = null;
+
+    private int _teamPumpkinScore = 0;
+    private int _teamGhostScore   = 0;
+    private int _teamWitchScore   = 0;
+
+    private int _scoreToAdd = 0;
 
     private void Awake()
     {
@@ -90,6 +99,32 @@ public class GameManager : MonoBehaviour
             //TurnOffPanel(_introPanelGroup, _introPanel);
             //TurnOnPanel(_gameBoardCanvasGroup, _gameBoardPanel);
         }
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            _teamPumpkinScore += _scoreToAdd;
+            _pumpkinScore.text = (_teamPumpkinScore).ToString();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            _teamWitchScore += _scoreToAdd;
+            _witchScore.text = (_teamWitchScore).ToString();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            _teamGhostScore += _scoreToAdd;
+            _ghostScore.text = (_teamGhostScore).ToString();
+        }
+    }
+
+    public void SetScoreToAdd(int amount)
+    {
+        _scoreToAdd = amount;
     }
     
     private void InitFirstCategory()
