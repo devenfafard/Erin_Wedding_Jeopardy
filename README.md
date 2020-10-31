@@ -15,7 +15,7 @@ We pared down the core mechanics of Jeopardy to the most engaging aspect - getti
 
 The controller scheme is as follows:  
 **Select Question:** left click  
-**Dismiss Question:** [Space] 
+**Dismiss Question:** [Space]  
 **Start Game:**  [Enter]  
 **Exit Game:** [Exit]  
 **Give Points to Team A:** [1]  
